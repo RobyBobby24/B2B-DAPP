@@ -23,6 +23,7 @@ export const store_rew =  async function (obj, collection_name, error= ()=>{}, p
         // postprocessing
         console.log("ok")
         postprocessing()
+
     }
     catch (error) {
         console.log(error)
