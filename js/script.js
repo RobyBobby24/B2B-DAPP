@@ -1,3 +1,4 @@
+
 (function ($) {
   'use strict';
 
@@ -8,7 +9,7 @@
     });
   });
 
-  
+  /*
   // Instagram Feed
   if (($('#instafeed').length) !== 0) {
     var accessToken = $('#instafeed').attr('data-accessToken');
@@ -72,6 +73,7 @@
     minute: 30
   });
 
+*/
   //Hero Slider
   $('.hero-slider').slick({
     // autoplay: true,
@@ -88,3 +90,4 @@
 
 
 })(jQuery);
+
