@@ -7,15 +7,6 @@ export const store_rew =  async function (obj, collection_name, error= ()=>{}, p
             obj = obj()
         }
 
-        /*
-        let username = document.getElementById("username").value
-        let review = document.getElementById("review").value
-        let object = {
-            username: username,
-            review: review
-        }
-         */
-
         // execute operation
         let col = collection(db, collection_name)
         let result = await addDoc(col, obj)
@@ -34,15 +25,6 @@ export const store_rew =  async function (obj, collection_name, error= ()=>{}, p
 export const store_rew_byid = async function (obj, collection_name, id, error= ()=>{}, postprocessing = ()=>{}) {
     try{
         // preprocessing
-        /*
-        let username = document.getElementById("username").value
-        let review = document.getElementById("review").value
-        let id = document.getElementById("reviewID").value
-        let object = {
-            username : username,
-            review : review
-        }
-         */
         if( typeof(obj) == "function"){
             obj = obj()
         }
@@ -70,7 +52,6 @@ export const load_rew = async function (collection_name, id, postprocessing, err
         if( typeof(id)){
             id = id()
         }
-        //let id = document.getElementById("reviewID").value
 
         // execute operation
         let doc_ref = doc(db, collection_name, id)
@@ -78,12 +59,8 @@ export const load_rew = async function (collection_name, id, postprocessing, err
 
         // postprocessing
         if( snapshot.exists() ){
-            /*
-            document.getElementById("username").value = snapshot.data().username
-            document.getElementById("review").value = snapshot.data().review
-            console.log("ok")
-             */
             postprocessing(snapshot.data())
+            console.log("ok")
         }
         else{
             console.log("do not exist")
@@ -98,22 +75,12 @@ export const load_rew = async function (collection_name, id, postprocessing, err
 
 export const update_rew = async function (obj, collection_name, id, error = ()=>{}, postprocessing = ()=>{}, do_not_exist = ()=>{}){
     try{
-        // preprocessing
-        /*
-        let username = document.getElementById("username").value
-        let review = document.getElementById("review").value
-        let object = {
-            username : username,
-            review : review
-        }
-         */
         if (typeof(obj) == "function"){
             obj = obj()
         }
         if (typeof(id) == "function"){
             id = id()
         }
-        //let id = document.getElementById("reviewID").value
 
         // execute operation
         let doc_ref = doc(db, collection_name, id)
@@ -124,10 +91,6 @@ export const update_rew = async function (obj, collection_name, id, error = ()=>
             await updateDoc(doc_ref, object)
             // postprocessing
             postprocessing()
-            /*
-            document.getElementById("username").value = snapshot.data().username
-            document.getElementById("review").value = snapshot.data().review
-             */
             console.log("ok")
 
         }
@@ -148,7 +111,6 @@ export const delete_rew = async function(collection_name, id, error = ()=>{}, po
         if( typeof(id) == "function"){
             id = id()
         }
-        //let id = document.getElementById("reviewID").value
 
         // execute operation
         await deleteDoc(doc(db, collection_name, id))
@@ -170,7 +132,6 @@ export const get_by_attribute = async function(attribute, collection_name, attri
         if( typeof(attribute) == "function"){
             attribute = attribute()
         }
-        //let username = document.getElementById("username").value
 
         // execute operation
         let q = query(collection(db, collection_name), where(attribute_name, "==", attribute));
@@ -178,11 +139,7 @@ export const get_by_attribute = async function(attribute, collection_name, attri
 
         // postprocessing
         if( snapshot.exists() ){
-            /*
-            document.getElementById("username").value = snapshot.data()[0].username
-            document.getElementById("review").value = snapshot.data()[0].review
-             */
-            postprocessing()
+            postprocessing(snapshot.data())
             console.log("ok")
         }
         else{
