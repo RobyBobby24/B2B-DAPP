@@ -1,4 +1,3 @@
-
 (function ($) {
   'use strict';
 
@@ -87,7 +86,6 @@
     pauseOnHover: false
   });
   $('.hero-slider').slickAnimation();
-
 
 })(jQuery);
 
