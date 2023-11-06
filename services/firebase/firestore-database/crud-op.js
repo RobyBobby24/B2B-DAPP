@@ -1,4 +1,4 @@
-import {getFirestore, collection, getDocs, addDoc, setDoc, deleteDoc, updateDoc, doc, getDoc} from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
+import {getFirestore, collection, getDocs, addDoc, setDoc, deleteDoc, updateDoc, doc, getDoc, orderBy, limit, query, where} from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
 const db = getFirestore()
 export const store_rew =  async function (obj, collection_name, error= ()=>{}, postprocessing = ()=>{}) {
     try {
@@ -148,6 +148,38 @@ export const get_by_attribute = async function(attribute, collection_name, attri
         }
     }
     catch (e) {
+        console.log(e)
+        error()
+    }
+
+}
+
+export const query_by_preamble = async function (collection_name, attribute, search_word, order_by_field, max_item_number = null, order_direction = "asc", error = ()=>{}, postprocessing = ()=>{}, do_not_exist = ()=>{}) {
+    try {
+        // preprocessing
+        if (typeof (attribute) == "function") {
+            attribute = attribute()
+        }
+
+        // execute operation
+        let q;
+        if (max_item_number == null) {
+            q = query(collection(db, collection_name), where(attribute, ">=", search_word), where('fieldName', "<=", search_word + 'z'), orderBy(order_by_field, order_direction));
+        } else {
+            q = query(collection(db, collection_name), where(attribute, ">=", search_word), where('fieldName', "<=", search_word + 'z'), orderBy(order_by_field, order_direction), limit(max_item_number));
+        }
+
+        let snapshot = await getDocs(q)
+
+        // postprocessing
+        if (snapshot.exists()) {
+            postprocessing(snapshot.data())
+            console.log("ok")
+        } else {
+            console.log("do not exist")
+            do_not_exist()
+        }
+    } catch (e) {
         console.log(e)
         error()
     }
