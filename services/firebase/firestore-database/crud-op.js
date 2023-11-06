@@ -164,21 +164,19 @@ export const query_by_preamble = async function (collection_name, attribute, sea
         // execute operation
         let q;
         if (max_item_number == null) {
-            q = query(collection(db, collection_name), where(attribute, ">=", search_word), where('fieldName', "<=", search_word + 'z'), orderBy(order_by_field, order_direction));
+            q = query(collection(db, collection_name), where(attribute, ">=", search_word),orderBy(attribute), orderBy(order_by_field, order_direction));
         } else {
-            q = query(collection(db, collection_name), where(attribute, ">=", search_word), where('fieldName', "<=", search_word + 'z'), orderBy(order_by_field, order_direction), limit(max_item_number));
+            q = query(collection(db, collection_name), where(attribute, ">=", search_word),orderBy(attribute), orderBy(order_by_field, order_direction), limit(max_item_number));
         }
 
         let snapshot = await getDocs(q)
-
         // postprocessing
-        if (snapshot.exists()) {
-            postprocessing(snapshot.data())
-            console.log("ok")
-        } else {
-            console.log("do not exist")
-            do_not_exist()
-        }
+        let result = []
+        snapshot.forEach((snap_item) => {
+            result.push(snap_item.data)
+            console.log(snap_item.data)
+        })
+        postprocessing(result)
     } catch (e) {
         console.log(e)
         error()
