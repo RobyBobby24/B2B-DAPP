@@ -130,99 +130,95 @@ FACEBOOK: https://www.facebook.com/themefisher
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="tabCommon mt-20">
-					<ul class="nav nav-tabs">
-						<li class=""><a data-toggle="tab" href="#reviews" aria-expanded="false">Reviews (3)</a></li>
-					</ul>
-					<div class="tab-content patternbg">
-						<div id="reviews" class="tab-pane fade">
-							<div class="post-comments">
-						    	<ul class="media-list comments-list m-bot-50 clearlist">
-								    <!-- Comment Item start-->
-								    <li class="media">
-
-								        <a class="pull-left" href="#!">
-								            <img class="media-object comment-avatar" src="images/blog/avater-1.jpg" alt="" width="50" height="50" />
-								        </a>
-
-								        <div class="media-body">
-								            <div class="comment-info">
-								                <h4 class="comment-author">
-								                    <a href="#!">Jonathon Andrew</a>
-								                	
-								                </h4>
-								                <time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>
-								                <a class="comment-button" href="#!"><i class="tf-ion-chatbubbles"></i>Reply</a>
-								            </div>
-
-								            <p>
-								                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod laborum minima, reprehenderit laboriosam officiis praesentium? Impedit minus provident assumenda quae.
-								            </p>
-								        </div>
-
-								    </li>
-								    <!-- End Comment Item -->
-
-								    <!-- Comment Item start-->
-								    <li class="media">
-
-								        <a class="pull-left" href="#!">
-								            <img class="media-object comment-avatar" src="images/blog/avater-4.jpg" alt="" width="50" height="50" />
-								        </a>
-
-								        <div class="media-body">
-
-								            <div class="comment-info">
-								                <div class="comment-author">
-								                    <a href="#!">Jonathon Andrew</a>
-								                </div>
-								                <time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>
-								                <a class="comment-button" href="#!"><i class="tf-ion-chatbubbles"></i>Reply</a>
-								            </div>
-
-								            <p>
-								                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni natus, nostrum iste non delectus atque ab a accusantium optio, dolor!
-								            </p>
-
-								        </div>
-
-								    </li>
-								    <!-- End Comment Item -->
-
-								    <!-- Comment Item start-->
-								    <li class="media">
-
-								        <a class="pull-left" href="#!">
-								            <img class="media-object comment-avatar" src="images/blog/avater-1.jpg" alt="" width="50" height="50">
-								        </a>
-
-								        <div class="media-body">
-
-								            <div class="comment-info">
-								                <div class="comment-author">
-								                    <a href="#!">Jonathon Andrew</a>
-								                </div>
-								                <time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>
-								                <a class="comment-button" href="#!"><i class="tf-ion-chatbubbles"></i>Reply</a>
-								            </div>
-
-								            <p>
-								                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend.
-								            </p>
-
-								        </div>
-
-								    </li>
-							</ul>
-							</div>
-						</div>
+		<!--Form reviews-->
+		<div class="post-comments-form"  style="padding: 10px">
+			<h3 class="post-sub-heading">Leave your review</h3>
+			<form method="post" action="#" id="form" role="form" >
+				<div class="container">
+				<div class="row justify-content-center ">
+					<div class="col-md-offset-3 col-md-7 custom-col form-group mx-auto text-center">
+						<!-- Username -->
+						<input type="text" name="name" id="name" class=" form-control" placeholder="Name *" maxlength="100" required="">
+					</div>
+					<!-- Comment -->
+					<div class="form-group col-md-offset-3 col-md-7 custom-col mx-auto text-center">
+						<textarea name="text" id="text" class=" form-control" rows="3" placeholder="Review" maxlength="400" required=""></textarea>
+					</div>
+					<!-- Send Button -->
+					<div class="form-group col-md-12 text-center">
+						<button type="submit" class="btn btn-main btn-small btn-round-full"  style="width: 270px" >Review</button>
+					</div>
 					</div>
 				</div>
-			</div>
+			</form>
 		</div>
-	</div>
+
+		<div class="post-comments" style="padding: 10px">
+			<h3 class="post-sub-heading">3 Reviews</h3>
+			<ul class="media-list comments-list m-bot-50 clearlist">
+
+				<!-- Comment Item start-->
+				<li class="media">
+					<a class="pull-left" href="#!">
+						<img class="media-object comment-avatar" src="images/blog/avater-1.jpg" alt="" width="50" height="50" />
+					</a>
+					<div class="media-body">
+						<div class="comment-info">
+							<h4 class="comment-author">
+								<a href="#!">Jonathon Andrew</a>
+							</h4>
+							<time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>
+							<a class="comment-button" href="#!"><i class="tf-ion-chatbubbles"></i>Reply</a>
+						</div>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod laborum minima, reprehenderit laboriosam officiis praesentium? Impedit minus provident assumenda quae.
+						</p>
+					</div>
+				</li>
+				<!-- End Comment Item -->
+
+				<!-- Comment Item start-->
+				<li class="media">
+					<a class="pull-left" href="#!">
+						<img class="media-object comment-avatar" src="images/blog/avater-4.jpg" alt="" width="50" height="50" />
+					</a>
+					<div class="media-body">
+						<div class="comment-info">
+							<div class="comment-author">
+								<a href="#!">Jonathon Andrew</a>
+							</div>
+							<time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>
+							<a class="comment-button" href="#!"><i class="tf-ion-chatbubbles"></i>Reply</a>
+						</div>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni natus, nostrum iste non delectus atque ab a accusantium optio, dolor!
+						</p>
+					</div>
+				</li>
+				<!-- End Comment Item -->
+				<!-- Comment Item start-->
+				<li class="media">
+					<a class="pull-left" href="#!">
+						<img class="media-object comment-avatar" src="images/blog/avater-1.jpg" alt="" width="50" height="50">
+					</a>
+					<div class="media-body">
+						<div class="comment-info">
+							<div class="comment-author">
+								<a href="#!">Jonathon Andrew</a>
+							</div>
+							<time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>
+							<a class="comment-button" href="#!"><i class="tf-ion-chatbubbles"></i>Reply</a>
+						</div>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend.
+						</p>
+					</div>
+				</li>
+			</ul>
+			<ul class="list-inline mt-10 text-center">
+			<button type="submit" class="btn btn-main btn-small btn-round-full"  style="width: 270px" >See more</button>
+			</ul>
+		</div>
 </section>
 
 <section class="products related-products section">

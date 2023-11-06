@@ -2703,4 +2703,8 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
   color: #555;
 }
 
+.custom-col {
+  width: calc((100% / 12) * 6); /* Occupa dalla colonna 3 alla colonna 10 in un sistema di 12 colonne */
+}
+
 /*# sourceMappingURL=style.css.map */
