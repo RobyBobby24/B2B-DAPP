@@ -8,7 +8,7 @@ export async function requestBeersByName(name, postprocessing = ()=>{}, error = 
 
 }
 
-async function requestBeersById(id, postprocessing = ()=>{}, error = ()=>{}) {
+export async function requestBeersById(id, postprocessing = ()=>{}, error = ()=>{}) {
     try{
         let result = await fetch(`https://api.punkapi.com/v2/beers/${id}`)
         let json = await result.json()
@@ -25,7 +25,7 @@ async function requestBeersById(id, postprocessing = ()=>{}, error = ()=>{}) {
 
 
 
-async function requestRandomBeer( postprocessing = ()=>{}, error = ()=>{}) {
+export async function requestRandomBeer( postprocessing = ()=>{}, error = ()=>{}) {
     try{
         let result = await fetch(`https://api.punkapi.com/v2/beers/random`)
         let json = await result.json()
