@@ -59,7 +59,9 @@ export const load_rew = async function (collection_name, id, postprocessing, err
 
         // postprocessing
         if( snapshot.exists() ){
-            postprocessing(snapshot.data())
+            let result = snapshot.data()
+            postprocessing(result)
+            return result
             console.log("ok")
         }
         else{
@@ -138,14 +140,12 @@ export const get_by_attribute = async function(attribute, collection_name, attri
         let snapshot = await getDocs(q)
 
         // postprocessing
-        if( snapshot.exists() ){
-            postprocessing(snapshot.data())
-            console.log("ok")
-        }
-        else{
-            console.log("do not exist")
-            do_not_exist()
-        }
+        let result = []
+        snapshot.forEach((snap_item) => {
+            result.push(snap_item.data().name)
+        })
+        postprocessing(result)
+        return result
     }
     catch (e) {
         console.log(e)
@@ -154,32 +154,31 @@ export const get_by_attribute = async function(attribute, collection_name, attri
 
 }
 
-export const query_by_preamble = async function (collection_name, attribute, search_word, order_by_field, max_item_number = null, order_direction = "asc", error = ()=>{}, postprocessing = ()=>{}, do_not_exist = ()=>{}) {
+export const query_by_preamble = async function (collection_name, attribute, search_word, order_by_field, max_item_number = null, order_direction = "asc", error = ()=>{}, postprocessing = ()=>{}) {
     try {
         // preprocessing
         if (typeof (attribute) == "function") {
             attribute = attribute()
         }
 
+        let q
         // execute operation
-        let q;
         if (max_item_number == null) {
-            q = query(collection(db, collection_name), where(attribute, ">=", search_word),orderBy(attribute), orderBy(order_by_field, order_direction));
+            q = query(collection(db, collection_name), orderBy(attribute), startAt(search_word));
         } else {
-            q = query(collection(db, collection_name), where(attribute, ">=", search_word),orderBy(attribute), orderBy(order_by_field, order_direction), limit(max_item_number));
+            q = query(collection(db, collection_name), orderBy(attribute),startAt(search_word), limit(max_item_number));
         }
 
         let snapshot = await getDocs(q)
         // postprocessing
         let result = []
         snapshot.forEach((snap_item) => {
-            result.push(snap_item.data)
-            console.log(snap_item.data)
+            result.push(snap_item.data().name)
         })
         postprocessing(result)
+        return result
     } catch (e) {
         console.log(e)
         error()
     }
-
 }
