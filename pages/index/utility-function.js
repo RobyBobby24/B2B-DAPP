@@ -1,4 +1,5 @@
 import {push_img, pull_img_url} from "../../services/firebase/storage/manage_storage.js"
+import {requestRandomBeer} from "../../services/BeerApi/BeerApiHandler";
 
 
 export let set_background_img= function (img_name, img_id){
@@ -8,4 +9,12 @@ export let set_background_img= function (img_name, img_id){
         //img.setAttribute('src', `background-image: url(${url});`);
         console.log(url)
     } )
+}
+
+export let set_beer = async function (img_id, name_id, property_id, description_id) {
+    let beer = await requestRandomBeer()
+    document.getElementById("imd_id").src = beer.image_url
+    document.getElementById("name_id").textContent = beer.name
+    document.getElementById("property_id").textContent = beer.abv
+    if (description_id) document.getElementById("description_id").textContent = beer.description
 }
