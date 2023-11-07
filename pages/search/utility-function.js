@@ -1,4 +1,8 @@
-function insertBeerInHTML(json) {
+import {requestBeersByName} from "../../services/BeerApi/BeerApiHandler.js";
+
+async function insertBeerInHTML(name ) {
+
+    let json = await requestBeersByName(name, ()=>{}, ()=>{})
     let html =
         `<div class="row">"
             "<div class="col-md-2">" 
