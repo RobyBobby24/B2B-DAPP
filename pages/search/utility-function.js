@@ -1,8 +1,8 @@
 import {requestBeersByName} from "../../services/BeerApi/BeerApiHandler.js";
 
-async function insertBeerInHTML(name ) {
+export let insert_beer = async function (name ) {
 
-    let json = await requestBeersByName(name, ()=>{}, ()=>{})
+    let json = await requestBeersByName(name)
     let html =
         `<div class="row">"
             "<div class="col-md-2">" 
@@ -15,4 +15,28 @@ async function insertBeerInHTML(name ) {
         "</div>"`
     document.getElementById("mainDiv").insertAdjacentElement("beforeend", html)
 
+}
+
+export let replace_search_recommended = async function (id = ()=>{}, objs = []) {
+    document.getElementById("recommended").replaceChildren()
+    for( let i in objs){
+        let html = `<li id = "${id(i)}" class="list-group-item"  aria-current="true">${objs[i].name} </li>`
+        document.getElementById("recommended").insertAdjacentHTML("beforeend", html)
+    }
+}
+
+export let get_search_input = async function(){
+    return document.getElementById("search_input").value
+}
+
+
+export let recommended_change = async function (objs=[]) {
+    await replace_search_recommended((i)=>{return `element${i}search`}, objs)
+    for (let i in objs) {
+        document.getElementById( `element${i}search`).addEventListener("mouseover", () => {
+            document.getElementById( `element${i}search`).style.filter = 'brightness(50%)'})
+
+        document.getElementById( `element${i}search`).addEventListener("mouseout", () => {
+            document.getElementById( `element${i}search`).style.filter = 'brightness(100%)'})
+    }
 }
