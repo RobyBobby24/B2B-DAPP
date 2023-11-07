@@ -13,8 +13,8 @@ export let set_background_img= function (img_name, img_id){
 
 export let set_beer = async function (img_id, name_id, property_id, description_id) {
     let beer = await requestRandomBeer()
-    document.getElementById("imd_id").src = beer.image_url
-    document.getElementById("name_id").textContent = beer.name
-    document.getElementById("property_id").textContent = beer.abv
-    if (description_id) document.getElementById("description_id").textContent = beer.description
+    document.getElementById("imd_id").src = beer[0].image_url
+    document.getElementById("name_id").textContent = beer[0].name
+    document.getElementById("property_id").textContent = beer[0].abv
+    if (description_id) document.getElementById("description_id").textContent = beer[0].description
 }
