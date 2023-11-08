@@ -1,4 +1,5 @@
-import {getFirestore, collection, getDocs, addDoc, setDoc, deleteDoc, updateDoc, doc, getDoc, orderBy, limit, query, where} from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
+import {getFirestore, collection, getDocs, addDoc, setDoc, deleteDoc, updateDoc, doc, getDoc, orderBy, limit, query, where, startAt, } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
+import "../conf-firebase.js"
 const db = getFirestore()
 export const store_rew =  async function (obj, collection_name, error= ()=>{}, postprocessing = ()=>{}) {
     try {
@@ -154,7 +155,7 @@ export const get_by_attribute = async function(attribute, collection_name, attri
 
 }
 
-export const query_by_preamble = async function (collection_name, attribute, search_word, order_by_field, max_item_number = null, order_direction = "asc", error = ()=>{}, postprocessing = ()=>{}) {
+export const query_by_preamble = async function (collection_name, attribute, search_word, order_by_field, max_item_number = null, error = ()=>{}, postprocessing = ()=>{}) {
     try {
         // preprocessing
         if (typeof (attribute) == "function") {
@@ -164,16 +165,16 @@ export const query_by_preamble = async function (collection_name, attribute, sea
         let q
         // execute operation
         if (max_item_number == null) {
-            q = query(collection(db, collection_name), orderBy(attribute), startAt(search_word));
+            q = query(collection(db, collection_name), orderBy(attribute), orderBy(order_by_field), startAt(search_word));
         } else {
-            q = query(collection(db, collection_name), orderBy(attribute),startAt(search_word), limit(max_item_number));
+            q = query(collection(db, collection_name), orderBy(attribute), orderBy(order_by_field), startAt(search_word), limit(max_item_number));
         }
 
         let snapshot = await getDocs(q)
         // postprocessing
         let result = []
         snapshot.forEach((snap_item) => {
-            result.push(snap_item.data().name)
+            result.push(snap_item.data())
         })
         postprocessing(result)
         return result

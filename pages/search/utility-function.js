@@ -1,20 +1,26 @@
 import {requestBeersByName} from "../../services/BeerApi/BeerApiHandler.js";
 
-export let insert_beer = async function (name ) {
-
-    let json = await requestBeersByName(name)
-    let html =
-        `<div class="row">"
-            "<div class="col-md-2">" 
-                "<img class="img-responsive" src=${json[0].image_url} alt="product-img" width="100" height="150" />" 
-            "</div>" 
-            "<div class="col-md-7">" 
-                "<h3 class="mb-1"><b>${json[0].name}</b></h3>" 
-                "<h7 class="mb-1"> ${json[0].description}</h7>" 
-            "</div>" 
-        "</div>"`
-    document.getElementById("mainDiv").insertAdjacentElement("beforeend", html)
-
+export let insert_beer = async function (objs ) {
+    document.getElementById("beer_results").replaceChildren()
+    for(let i in objs ){
+        let html =
+            `<div className="col-md-9">
+                <a href="../product-single/product-single.html?id=${objs[0].id}" className="list-group-item list-group-item-action flex-column align-items-start">
+                    <div className="d-flex w-100 justify-content-between">
+                        <div class="row">
+                            <div class="col-md-2"> 
+                                <img class="img-responsive" src=${objs[0].image_url} alt="product-img" width="100" height="150" /> 
+                            </div> 
+                            <div class="col-md-7"> 
+                                <h3 class="mb-1"><b>${objs[0].name}</b></h3> 
+                                <h7 class="mb-1"> ${objs[0].description}</h7> 
+                            </div> 
+                        </div>
+                    </div>
+                </a>
+            </div>`
+        document.getElementById("beer_results").insertAdjacentHTML("beforeend", html)
+    }
 }
 
 export let replace_search_recommended = async function (id = ()=>{}, objs = []) {
