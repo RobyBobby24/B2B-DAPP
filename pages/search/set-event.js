@@ -41,5 +41,7 @@ document.getElementById("search_input").addEventListener("keyup", async () => {
 
 
 document.getElementById("search_input").addEventListener("click", ()=>{recommended_change()})
-document.getElementById("search_input").addEventListener("focusout", ()=>{replace_search_recommended()})
+
+//document.getElementById("search_input").addEventListener("focusout", ()=>{replace_search_recommended()})
+
 
