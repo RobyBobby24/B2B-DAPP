@@ -1,5 +1,5 @@
 import {set_background_img, set_beer} from "./utility-function.js";
-import {get_search_input, recommended_change, replace_search_recommended} from "utility-function.js";
+import {get_search_input, recommended_change, replace_search_recommended} from "./utility-function.js";
 import {query_by_preamble} from "../../services/firebase/firestore-database/crud-op.js";
 import {requestBeersByName} from "../../services/BeerApi/BeerApiHandler.js";
 
