@@ -1,4 +1,7 @@
 import {set_background_img, set_beer} from "./utility-function.js";
+import {get_search_input, recommended_change, replace_search_recommended} from "utility-function.js";
+import {query_by_preamble} from "../../services/firebase/firestore-database/crud-op.js";
+import {requestBeersByName} from "../../services/BeerApi/BeerApiHandler.js";
 
 document.addEventListener("DOMContentLoaded", ()=>{
     for (let i=1 ; i<=3; i++){
@@ -24,3 +27,38 @@ document.addEventListener("DOMContentLoaded", ()=>{
     }
 })
  */
+
+document.getElementById("search_input").addEventListener("keyup", async () => {
+    let input = await get_search_input()
+
+    let objs = await query_by_preamble(
+        "Beer_Id",
+        "name",
+        input,
+        "number_calls",
+        5,
+    )
+    recommended_change(objs)
+})
+
+
+document.getElementById("search_input").addEventListener("click", async () => {
+    let input = await get_search_input()
+    let objs = await query_by_preamble(
+        "Beer_Id",
+        "name",
+        input,
+        "number_calls",
+        5,
+    )
+    recommended_change(objs)
+})
+
+document.getElementById("recommended_div").addEventListener("focusout", ()=>{
+    setTimeout(replace_search_recommended,"125")})
+
+document.getElementById("search_input").addEventListener("submit",async () => {
+    let input = await get_search_input()
+    let objs = await requestBeersByName(input)
+    insert_beer(objs)
+})

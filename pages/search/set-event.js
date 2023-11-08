@@ -14,22 +14,6 @@ for(let i=1 ; i<=5; i++){
 
 document.getElementById("search_input").addEventListener("keyup", async () => {
     let input = await get_search_input()
-    /*
-    let objs = [
-        {
-            name: "Beer1",
-            number_of_requests: 10
-        },
-        {
-            name: "Beer2",
-            number_of_requests: 5
-        },
-        {
-            name: "Beer3",
-            number_of_requests: 2
-        }
-    ]
-     */
 
     let objs = await query_by_preamble(
         "Beer_Id",

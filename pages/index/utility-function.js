@@ -19,6 +19,41 @@ export let set_beer = async function (id, img_id, name_id, link_id, property_id,
     if (description_id) document.getElementById(description_id).textContent = beer[0].description
 }
 
+export let replace_search_recommended = async function (id = ()=>{}, objs = []) {
+    document.getElementById("recommended").replaceChildren()
+    for( let i in objs){
+        let html = `<li id = "${id(i)}" class="list-group-item"  aria-current="true" style="z-index: 2">${objs[i].name} </li>`
+        document.getElementById("recommended").insertAdjacentHTML("beforeend", html)
+    }
+}
+
+export let get_search_input = async function(){
+    return document.getElementById("search_input").value
+}
+
+export let set_search_input = function(text){
+    document.getElementById("search_input").value = text
+}
+
+
+export let recommended_change = async function (objs=[]) {
+    await replace_search_recommended((i)=>{return `element${i}search`}, objs)
+    for (let i in objs) {
+
+        document.getElementById( `element${i}search`).addEventListener("mouseover", () => {
+            document.getElementById( `element${i}search`).style.filter = 'brightness(50%)'})
+
+        document.getElementById( `element${i}search`).addEventListener("mouseout", () => {
+            document.getElementById( `element${i}search`).style.filter = 'brightness(100%)'})
+
+        document.getElementById( `element${i}search`).addEventListener("click", () => {
+            let text = document.getElementById( `element${i}search`).innerText
+            set_search_input(text)
+            replace_search_recommended()
+        })
+    }
+}
+
 /* for loading random beers
 export let set_random_beer = async function (img_id, name_id, property_id, description_id) {
     let beer = await requestRandomBeer()
