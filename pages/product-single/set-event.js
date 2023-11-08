@@ -1,11 +1,11 @@
 import {delete_rew, load_rew, store_rew, update_rew} from "../../services/firebase/firestore-database/crud-op.js";
 import {get_review, get_id, set_review, set_beer} from "./utility-function.js"
 
-// for loading beers by id in product-single.html
+// for loading beers by id in index.html
 document.addEventListener("DOMContentLoaded", ()=>{
-    let arrayOfId = [123,192,40]
-    for (let i=1 ; i<=3; i++){
-        set_beer(arrayOfId[i-1], `product-${i}-img`, `product-${i}-name`, `product-${i}-property`)
+    let arrayOfId = [123,192,40,154,206,94]
+    for (let i=1 ; i<=6; i++){
+        set_beer(arrayOfId[i-1], `product-${i}-img`, `product-${i}-name`, `product-${i}-link`, `product-${i}-property`)
     }
 })
 

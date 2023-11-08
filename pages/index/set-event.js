@@ -10,9 +10,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
 document.addEventListener("DOMContentLoaded", ()=>{
     let arrayOfId = [123,192,40,154,206,94]
     for (let i=1 ; i<=6; i++){
-        set_beer(arrayOfId[i-1], `product-${i}-img`, `product-${i}-name`, `product-${i}-property`)
+        set_beer(arrayOfId[i-1], `product-${i}-img`, `product-${i}-name`, `product-${i}-link`, `product-${i}-property`)
     }
 })
+
 
 // for loading random beers in index.html
 /*
