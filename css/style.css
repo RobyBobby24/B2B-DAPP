@@ -2706,5 +2706,10 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 .custom-col {
   width: calc((100% / 12) * 6); /* Occupa dalla colonna 3 alla colonna 10 in un sistema di 12 colonne */
 }
-
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f5f5f5; /* Puoi personalizzare il colore di sfondo se lo desideri */
+}
 /*# sourceMappingURL=style.css.map */
