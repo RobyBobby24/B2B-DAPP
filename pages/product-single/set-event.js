@@ -9,6 +9,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
     }
 })
 
+// da aggiungere la funzione che restituisce l'id dall'url
+/*entListener("DOMContentLoaded", ()=>{
+        let id = await MatteoFunction()
+        set_beer(id, `product-single-img`, `product-single-name`, null,
+            `product-single-property`, `product-single-description`)
+    })
+*/
 /*
 document.getElementById( "store").addEventListener("click",()=> {
     store_rew(get_review, "Review")
