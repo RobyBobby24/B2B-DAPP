@@ -35,3 +35,8 @@ export let set_beer = async function (id, img_id, name_id, link_id, property_id,
     document.getElementById(property_id).textContent = beer[0].abv + "%"
     if (description_id) document.getElementById(description_id).textContent = beer[0].description
 }
+
+export let id_from_url = async function (){
+    const searchParams = await new URLSearchParams(window.location.search);
+    return searchParams.get("id")
+}
