@@ -42,9 +42,20 @@ document.getElementById("search_input").addEventListener("keyup", async () => {
 })
 
 
-document.getElementById("search_input").addEventListener("click", ()=>{recommended_change()})
+document.getElementById("search_input").addEventListener("click", async () => {
+    let input = await get_search_input()
+    let objs = await query_by_preamble(
+        "Beer_Id",
+        "name",
+        input,
+        "number_calls",
+        5,
+    )
+    recommended_change(objs)
+})
 
-//document.getElementById("recommended_div").addEventListener("focousout", ()=>{replace_search_recommended()})
+document.getElementById("recommended_div").addEventListener("focusout", ()=>{
+    setTimeout(replace_search_recommended,"125")})
 
 document.getElementById("discover_button").addEventListener("click",async () => {
     let input = await get_search_input()

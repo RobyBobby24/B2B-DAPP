@@ -6,15 +6,15 @@ export let insert_beer = async function (objs ) {
         let html =
             `<div class="row" style=" border-style: ridge" >
                 <div className="col-md-9">
-                    <a href="../product-single/product-single.html?id=${objs[0].id}" className="list-group-item list-group-item-action flex-column align-items-start">
+                    <a href="../product-single/product-single.html?id=${objs[i].id}" className="list-group-item list-group-item-action flex-column align-items-start">
                         <div className="d-flex w-100 justify-content-between">
                             <div class="row">
                                 <div class="col-md-2"> 
-                                    <img class="img-responsive" src=${objs[0].image_url} alt="product-img"  style="padding: 5px; position: relative; margin: auto; width: auto; height: 150px" /> 
+                                    <img class="img-responsive" src=${objs[i].image_url} alt="product-img"  style="padding: 5px; position: relative; margin: auto; width: auto; height: 150px" /> 
                                 </div> 
                                 <div class="col-md-7"> 
-                                    <h3 class="mb-1"><b>${objs[0].name}</b></h3> 
-                                    <h7 class="mb-1"> ${objs[0].description}</h7> 
+                                    <h3 class="mb-1"><b>${objs[i].name}</b></h3> 
+                                    <h7 class="mb-1"> ${objs[i].description}</h7> 
                                 </div> 
                             </div>
                         </div>

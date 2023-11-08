@@ -1,4 +1,4 @@
-import {getFirestore, collection, getDocs, addDoc, setDoc, deleteDoc, updateDoc, doc, getDoc, orderBy, limit, query, where, startAt, } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
+import {getFirestore, collection, getDocs, addDoc, setDoc, deleteDoc, updateDoc, doc, getDoc, orderBy, limit, query, where, startAt, endAt} from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
 import "../conf-firebase.js"
 const db = getFirestore()
 export const store_rew =  async function (obj, collection_name, error= ()=>{}, postprocessing = ()=>{}) {
@@ -165,9 +165,9 @@ export const query_by_preamble = async function (collection_name, attribute, sea
         let q
         // execute operation
         if (max_item_number == null) {
-            q = query(collection(db, collection_name), orderBy(attribute), orderBy(order_by_field), startAt(search_word));
+            q = query(collection(db, collection_name), orderBy(attribute), orderBy(order_by_field), startAt(search_word), endAt(search_word+"\uf8ff"));
         } else {
-            q = query(collection(db, collection_name), orderBy(attribute), orderBy(order_by_field), startAt(search_word), limit(max_item_number));
+            q = query(collection(db, collection_name), orderBy(attribute), orderBy(order_by_field), startAt(search_word), endAt(search_word+"\uf8ff"), limit(max_item_number));
         }
 
         let snapshot = await getDocs(q)
