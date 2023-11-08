@@ -142,7 +142,7 @@ export const get_by_attribute = async function(attribute, collection_name, attri
         // postprocessing
         let result = []
         snapshot.forEach((snap_item) => {
-            result.push(snap_item.data().name)
+            result.push(snap_item.data())
         })
         postprocessing(result)
         return result
