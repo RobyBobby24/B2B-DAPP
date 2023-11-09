@@ -43,7 +43,7 @@ export let insert_rew = function(objs) {
     for(let obj of objs ){
         let html = `<li className="media">
                                 <a className="pull-left">
-                                    <img className="media-object comment-avatar" src="https://icon-library.com/images/user-icon-image/user-icon-image-2.jpg" alt="" width="50" height="50">
+                                    <img className="media-object comment-avatar" src="https://thumbs.dreamstime.com/z/birra-bevente-dell-uomo-avido-25256367.jpg?w=576" alt="" width="50" height="50">
                                 </a>
                                 <div className="media-body">
                                     <div className="comment-info">
