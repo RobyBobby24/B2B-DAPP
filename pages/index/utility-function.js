@@ -48,10 +48,14 @@ export let recommended_change = async function (objs=[]) {
 
         document.getElementById( `element${i}search`).addEventListener("click", () => {
             let text = document.getElementById( `element${i}search`).innerText
-            set_search_input(text)
-            replace_search_recommended()
+            search_results(text)
         })
     }
+}
+
+export let search_results = async function (search_key){
+    search_key = search_key.replace("#","%23")
+    window.location.assign(`../search/search.html?searchkey=${search_key}`)
 }
 
 /* for loading random beers

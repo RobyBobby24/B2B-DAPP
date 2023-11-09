@@ -34,7 +34,8 @@ export let replace_search_recommended = async function (id = ()=>{}, objs = []) 
 }
 
 export let get_search_input = async function(){
-    return document.getElementById("search_input").value
+    let input = document.getElementById("search_input").value
+    return input.replace("#","%23")
 }
 
 export let set_search_input = function(text){
@@ -58,4 +59,14 @@ export let recommended_change = async function (objs=[]) {
             replace_search_recommended()
         })
     }
+}
+
+export let get_searchkey_from_url = async function (){
+    let searchParams = await new URLSearchParams(window.location.search);
+    return searchParams.get("searchkey").replace("#","%23")
+}
+
+export let rename_url = async function (input){
+    input = input.replace("#","%23")
+    history.replaceState(null, '', `search.html?searchkey=${input}`);
 }
