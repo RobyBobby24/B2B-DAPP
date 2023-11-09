@@ -129,7 +129,7 @@ export const delete_rew = async function(collection_name, id, error = ()=>{}, po
 }
 
 // da testare
-export const get_by_attribute = async function(attribute, collection_name, attribute_name, limit_number=null, error = ()=>{}, postprocessing = ()=>{}, do_not_exist = ()=>{}){
+export const get_by_attribute = async function(attribute, collection_name, attribute_name, limit_number=null, order_by =null, order_direction = "asc", error = ()=>{}, postprocessing = ()=>{}, do_not_exist = ()=>{}){
     try{
         // preprocessing
         if( typeof(attribute) == "function"){
@@ -138,11 +138,17 @@ export const get_by_attribute = async function(attribute, collection_name, attri
 
         // execute operation
         let q
-        if( limit == null){
+        if( limit == null && order_by ==null){
             q = query(collection(db, collection_name), where(attribute_name, "==", attribute));
         }
-        else {
+        else if (limit == null){
+            q = query(collection(db, collection_name), where(attribute_name, "==", attribute), orderBy(order_by, order_direction));
+        }
+        else if(order_by == null) {
             q = query(collection(db, collection_name), where(attribute_name, "==", attribute), limit(limit_number));
+        }
+        else{
+            q = query(collection(db, collection_name), where(attribute_name, "==", attribute), orderBy(order_by, order_direction), limit(limit_number));
         }
         let snapshot = await getDocs(q)
 

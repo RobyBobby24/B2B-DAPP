@@ -1,5 +1,5 @@
 import {delete_rew, load_rew, query_by_preamble, store_rew, update_rew, get_by_attribute} from "../../services/firebase/firestore-database/crud-op.js";
-import {get_review, set_review, set_beer, id_from_url, insert_rew} from "./utility-function.js"
+import {get_review, set_review, set_beer, id_from_url, insert_rew, set_input_rew} from "./utility-function.js"
 import {get_search_input, recommended_change, replace_search_recommended, search_results} from "../index/utility-function.js";
 import {requestBeersByName} from "../../services/BeerApi/BeerApiHandler.js";
 
@@ -21,11 +21,12 @@ document.addEventListener("DOMContentLoaded", async ()=>{
 
 document.getElementById( "submit_rew").addEventListener("click",async () => {
     store_rew(await get_review(), "Review")
+    set_input_rew()
 })
 
 document.addEventListener("DOMContentLoaded", async ()=>{
     let id = await id_from_url()
-    let reviews = await get_by_attribute( id, "Review","beer_id",3)
+    let reviews = await get_by_attribute( id, "Review","beer_id",3, "date", "desc")
     insert_rew(reviews)
 })
 /*

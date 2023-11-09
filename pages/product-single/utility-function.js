@@ -33,6 +33,11 @@ export let set_review = function (objs, user_id, rew_id, date_id){
     document.getElementById(date_id).value = new Date(obj.date).toISOString()
 }
 
+export let set_input_rew = function ( username="", review=""){
+    document.getElementById("username").value = username
+    document.getElementById("review").value = review
+}
+
 export let insert_rew = function(objs) {
     document.getElementById("review_content").replaceChildren()
     for(let obj of objs ){
