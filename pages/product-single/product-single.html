@@ -88,10 +88,19 @@ FACEBOOK: https://www.facebook.com/themefisher
 					<li class="dropdown search dropdown-slide">
 						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
 								class="tf-ion-ios-search-strong" style="vertical-align: -1;"></i> Search</a>
-						<ul class="dropdown-menu search-dropdown">
+						<ul class="dropdown-menu search-dropdown" id="recommended_div">
 							<li>
-								<form action="post"><input type="search" class="form-control" placeholder="Search Beer..."></form>
+								<input type="search" id="search_input" class="form-control" placeholder="Search Beer...">
 							</li>
+							<ul class="list-group" id="recommended" style="z-index: 2; position: absolute; top: 50px; left: 10px; width: 90%">
+								<!--
+                                <li id = "element1search" class="list-group-item"  aria-current="true">An active item </li>
+                                <li id = "element2search" class="list-group-item"   >A second item</li>
+                                <li id = "element3search" class="list-group-item"   >A third item</li>
+                                <li id = "element4search" class="list-group-item"  >A fourth item</li>
+                                <li id = "element5search" class="list-group-item">  And a fifth one</li>
+                                -->
+							</ul>
 						</ul>
 					</li><!-- / Search -->
 
@@ -132,29 +141,27 @@ FACEBOOK: https://www.facebook.com/themefisher
 		<!--Form reviews-->
 		<div class="post-comments-form"  style="padding: 10px">
 			<h3 class="post-sub-heading">Leave your review</h3>
-			<form method="post" action="#" id="form" role="form" >
 				<div class="container">
 				<div class="row justify-content-center ">
 					<div class="col-md-offset-3 col-md-7 custom-col form-group mx-auto text-center">
 						<!-- Username -->
-						<input type="text" name="name" id="name" class=" form-control" placeholder="Name *" maxlength="100" required="">
+						<input type="text" name="name" id="username" class=" form-control" placeholder="Name *" maxlength="100" required="">
 					</div>
 					<!-- Comment -->
 					<div class="form-group col-md-offset-3 col-md-7 custom-col mx-auto text-center">
-						<textarea name="text" id="text" class=" form-control" rows="3" placeholder="Review" maxlength="400" required=""></textarea>
+						<textarea name="text" id="review" class=" form-control" rows="3" placeholder="Review" maxlength="400" required=""></textarea>
 					</div>
 					<!-- Send Button -->
 					<div class="form-group col-md-12 text-center">
-						<button type="submit" class="btn btn-main btn-small btn-round-full"  style="width: 270px" >Review</button>
+						<button type="submit" class="btn btn-main btn-small btn-round-full" id="submit_rew"  style="width: 270px" >Review</button>
 					</div>
 					</div>
 				</div>
-			</form>
 		</div>
 
 		<div class="post-comments" style="padding: 10px">
 			<h3 class="post-sub-heading">3 Reviews</h3>
-			<ul class="media-list comments-list m-bot-50 clearlist">
+			<ul class="media-list comments-list m-bot-50 clearlist" id="review_content">
 
 				<!-- Comment Item start-->
 				<li class="media">

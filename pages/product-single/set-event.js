@@ -1,5 +1,7 @@
-import {delete_rew, load_rew, store_rew, update_rew} from "../../services/firebase/firestore-database/crud-op.js";
-import {get_review, get_id, set_review, set_beer, id_from_url} from "./utility-function.js"
+import {delete_rew, load_rew, query_by_preamble, store_rew, update_rew, get_by_attribute} from "../../services/firebase/firestore-database/crud-op.js";
+import {get_review, set_review, set_beer, id_from_url, insert_rew} from "./utility-function.js"
+import {get_search_input, recommended_change, replace_search_recommended, search_results} from "../index/utility-function.js";
+import {requestBeersByName} from "../../services/BeerApi/BeerApiHandler.js";
 
 // for loading beers by id in index.html
 document.addEventListener("DOMContentLoaded", ()=>{
@@ -16,20 +18,68 @@ document.addEventListener("DOMContentLoaded", async ()=>{
             "product-single-property", "product-single-description")
     })
 
-/*
-document.getElementById( "store").addEventListener("click",()=> {
-    store_rew(get_review, "Review")
+
+document.getElementById( "submit_rew").addEventListener("click",async () => {
+    store_rew(await get_review(), "Review")
 })
 
+document.addEventListener("DOMContentLoaded", async ()=>{
+    let id = await id_from_url()
+    let reviews = await get_by_attribute( id, "Review","beer_id",3)
+    insert_rew(reviews)
+})
+/*
 document.getElementById( "load").addEventListener("click", ()=>{
-    load_rew("Review", get_id, set_review)
+    load_rew("Review", id_from_url, set_review)
 })
 
 document.getElementById( "update").addEventListener("click", ()=> {
-    update_rew(get_review, "Review", get_id)
+    update_rew(get_review, "Review", id_from_url)
 })
 
 document.getElementById( "delete").addEventListener("click", ()=>{
-    delete_rew("Review",get_id)
+    delete_rew("Review",id_from_url)
 })
 */
+
+// search
+document.getElementById("search_input").addEventListener("keyup", async (event) => {
+    if(event.key == "Enter"){
+        let input = await get_search_input()
+        search_results(input)
+    }
+    else {
+        let input = await get_search_input()
+
+        let objs = await query_by_preamble(
+            "Beer_Id",
+            "name",
+            input,
+            "number_calls",
+            5,
+        )
+        recommended_change(objs)
+    }
+})
+
+
+document.getElementById("search_input").addEventListener("click", async () => {
+    let input = await get_search_input()
+    let objs = await query_by_preamble(
+        "Beer_Id",
+        "name",
+        input,
+        "number_calls",
+        5,
+    )
+    recommended_change(objs)
+})
+
+document.getElementById("recommended_div").addEventListener("focusout", ()=>{
+    setTimeout(replace_search_recommended,"125")})
+
+document.getElementById("search_input").addEventListener("submit",async () => {
+    let input = await get_search_input()
+    let objs = await requestBeersByName(input)
+    insert_beer(objs)
+})
