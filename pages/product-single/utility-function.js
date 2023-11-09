@@ -51,7 +51,7 @@ export let insert_rew = function(objs) {
                                             <a> ${obj.username}</a>
                                         </div>
                                         <time>${new Date(obj.date).toGMTString()}</time>
-                                        <a className="comment-button" href="#!"><i className="tf-ion-chatbubbles"></i>Reply</a>
+                                        <!-- <a className="comment-button" href="#!"><i className="tf-ion-chatbubbles"></i>Reply</a> -->
                                     </div>
                                     <p>
                                         ${obj.review}
