@@ -24,6 +24,12 @@ document.getElementById( "submit_rew").addEventListener("click",async () => {
     set_input_rew()
 })
 
+document.getElementById( "submit_rew").addEventListener("click",async () => {
+    let id = await id_from_url()
+    let reviews = await get_by_attribute( id, "Review","beer_id",3, "date", "desc")
+    insert_rew(reviews)
+})
+
 document.addEventListener("DOMContentLoaded", async ()=>{
     let id = await id_from_url()
     let reviews = await get_by_attribute( id, "Review","beer_id",3, "date", "desc")
