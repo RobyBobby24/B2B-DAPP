@@ -91,7 +91,7 @@ export const update_rew = async function (obj, collection_name, id, error = ()=>
 
 
         if( snapshot.exists() ){
-            await updateDoc(doc_ref, object)
+            await updateDoc(doc_ref, obj)
             // postprocessing
             postprocessing()
             console.log("ok")
@@ -207,6 +207,7 @@ export const get_by_attribute = async function(attribute, collection_name, attri
 
 }
 
+/*
 export const query_by_preamble = async function (collection_name, attribute, search_word, order_by_field, max_item_number = null, error = ()=>{}, postprocessing = ()=>{}) {
     try {
         // preprocessing
@@ -217,9 +218,9 @@ export const query_by_preamble = async function (collection_name, attribute, sea
         let q
         // execute operation
         if (max_item_number == null) {
-            q = query(collection(db, collection_name), orderBy(attribute), orderBy(order_by_field), startAt(search_word), endAt(search_word+"\uf8ff"));
+            q = query(collection(db, collection_name), orderBy(attribute), orderBy(order_by_field, "desc"), startAt(search_word), endAt(search_word+"\uf8ff"));
         } else {
-            q = query(collection(db, collection_name), orderBy(attribute), orderBy(order_by_field), startAt(search_word), endAt(search_word+"\uf8ff"), limit(max_item_number));
+            q = query(collection(db, collection_name),orderBy(attribute) , startAt(search_word), endAt(search_word+"\uf8ff"), limit(max_item_number));
         }
 
         let snapshot = await getDocs(q)
@@ -235,3 +236,60 @@ export const query_by_preamble = async function (collection_name, attribute, sea
         error()
     }
 }
+ */
+export const load_ordered = async function (collection_name, order_by_field, order_direction="asc", max_item_number = null, error = ()=>{}, postprocessing = ()=>{}) {
+    try {
+
+        let q
+        // execute operation
+        if (max_item_number == null) {
+            q = query(collection(db, collection_name),orderBy(order_by_field, order_direction));
+        } else {
+            q = query(collection(db, collection_name),orderBy(order_by_field, order_direction), limit(max_item_number));
+        }
+
+        let snapshot = await getDocs(q)
+        // postprocessing
+        let result = []
+        snapshot.forEach((snap_item) => {
+            result.push(snap_item.data())
+        })
+        postprocessing(result)
+        console.log("ok")
+        return result
+    } catch (e) {
+        console.log(e)
+        error()
+    }
+}
+
+export const query_by_preamble = async function (collection_name, attribute, search_word, order_by_field, max_item_number = null, error = ()=>{}, postprocessing = ()=>{}) {
+    try {
+        // preprocessing
+        if (typeof (attribute) == "function") {
+            attribute = attribute()
+        }
+
+        let q = query(collection(db, collection_name), orderBy(order_by_field, "desc"),orderBy(attribute));
+
+
+        let snapshot = await getDocs(q)
+        // postprocessing
+        let result = []
+        snapshot.forEach((snap_item) => {
+            if(snap_item.data()[attribute] >= search_word && snap_item.data()[attribute] < search_word+"\uf8ff" && result.length < max_item_number){
+                result.push(snap_item.data())
+            }
+            if(result.length >= max_item_number){
+                console.log(result.length)
+                return result
+            }
+        })
+        postprocessing(result)
+        return result
+    } catch (e) {
+        console.log(e)
+        error()
+    }
+}
+

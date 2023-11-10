@@ -1,5 +1,5 @@
 import {search_results, set_beers, get_search_input, recommended_change, replace_search_recommended} from "./utility-function.js";
-import {query_by_preamble} from "../../services/persitence_manager.js";
+import {load_ordered, query_by_preamble} from "../../services/persitence_manager.js";
 import {requestBeersById} from "../../services/persitence_manager.js";
 
 
@@ -7,10 +7,10 @@ import {requestBeersById} from "../../services/persitence_manager.js";
  * loading beers by id in index.html
  */
 document.addEventListener("DOMContentLoaded", async () => {
-    let arrayOfId = [123, 192, 40, 154, 206, 94]
+    let arrayOfId = await load_ordered("Beer_Id","number_calls","desc",6)
     let beers = []
-    for (let id of arrayOfId) {
-        let beer = await requestBeersById(id)
+    for (let obj of arrayOfId) {
+        let beer = await requestBeersById(obj.id)
          beers.push( beer[0])
     }
     set_beers(beers)

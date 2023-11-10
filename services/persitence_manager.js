@@ -123,6 +123,20 @@ export const query_by_preamble = async function (collection_name, attribute, sea
     return database.query_by_preamble(collection_name, attribute, search_word, order_by_field, max_item_number , error , postprocessing )
 }
 
+/**
+ * load object ordered by
+ * @param collection_name name of the object collection (table)
+ * @param order_by_field attribute to order
+ * @param order_direction (asc/desc)
+ * @param max_item_number max number of results
+ * @param error error function
+ * @param postprocessing postprocessing function
+ * @returns {Promise<*[]|undefined>}
+ */
+export const load_ordered = async function (collection_name, order_by_field, order_direction="asc", max_item_number = null, error = ()=>{}, postprocessing = ()=>{}) {
+    return database.load_ordered(collection_name,order_by_field,order_direction,max_item_number,error,postprocessing)
+}
+
 
 
 

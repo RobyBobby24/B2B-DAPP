@@ -30,8 +30,9 @@ document.addEventListener("DOMContentLoaded", async ()=>{
  */
 document.addEventListener("DOMContentLoaded", async ()=>{
     let id = await id_from_url()
-    update_by_function("Beer_Id","id",id, (obj)=>{
+    update_by_function("Beer_Id","id",Number(id), (obj)=>{
         obj.number_calls += 1
+        return obj
     })
 })
 
