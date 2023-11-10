@@ -1,6 +1,6 @@
 import {insert_beer, replace_search_recommended, get_search_input, recommended_change, get_searchkey_from_url} from "./utility-function.js";
-import {query_by_preamble} from "../../services/persitence_menager.js";
-import { requestBeersByName} from "../../services/persitence_menager.js"
+import {query_by_preamble} from "../../services/persitence_manager.js";
+import { requestBeersByName} from "../../services/persitence_manager.js"
 
 /*
 for(let i=1 ; i<=5; i++){

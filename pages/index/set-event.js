@@ -1,6 +1,6 @@
 import {search_results, set_background_img, set_beer, get_search_input, recommended_change, replace_search_recommended} from "./utility-function.js";
-import {query_by_preamble} from "../../services/persitence_menager.js";
-import {requestBeersByName} from "../../services/persitence_menager.js";
+import {query_by_preamble} from "../../services/persitence_manager.js";
+import {requestBeersByName} from "../../services/persitence_manager.js";
 
 document.addEventListener("DOMContentLoaded", ()=>{
     for (let i=1 ; i<=3; i++){
