@@ -1,16 +1,28 @@
-
-export let get_username = function(){
+/**
+ * @returns {*} the username written in the review form
+ */
+let get_username = function(){
     return document.getElementById("username").value
 }
 
-export let get_text_review = function(){
+/**
+ * @returns {*} text written in the review form
+ */
+let get_text_review = function(){
     return document.getElementById("review").value
 }
 
-export let get_actual_date = function(){
+/**
+ * @returns {number} return timestamp of now
+ */
+let get_actual_date = function(){
     return Date.now();
 }
 
+/**
+ * return the data of new review
+ * @returns {Promise<{date: number, review: *, beer_id: string, username: *}>}
+ */
 export let get_review = async function () {
     return {
         username: get_username(),
@@ -19,13 +31,6 @@ export let get_review = async function () {
         beer_id: await id_from_url(),
     }
 
-}
-
-// set method
-export let set_review = function (objs, user_id, rew_id, date_id){
-    document.getElementById(user_id).value = obj.username
-    document.getElementById(rew_id).value = obj.review
-    document.getElementById(date_id).value = new Date(obj.date).toISOString()
 }
 
 /**
@@ -52,6 +57,10 @@ let hide_button = function (min_rews_number, rews_number){
     }
 }
 
+/**
+ * set the label of the number of review
+ * @param number_rews total number of review
+ */
 let set_number_rews_label = function (number_rews){
     if( number_rews == 1){
         document.getElementById("number-rews").innerText = `${number_rews} Review`
@@ -61,6 +70,10 @@ let set_number_rews_label = function (number_rews){
     }
 }
 
+/**
+ * insert HTML relative to a review
+ * @param objs list of object each one represent a review
+ */
 let insert_rews_HTML = function (objs){
     for(let obj of objs ){
         let html = `<li class="media">
@@ -85,7 +98,12 @@ let insert_rews_HTML = function (objs){
 }
 
 
-
+/**
+ * manage all the process of insert html reviews, do all the necessary check
+ * @param objs reviews
+ * @param total_rews total number of reviews (not only the passed with objs)
+ * @param hide_button_val if do or not the check on the button SEE MORE
+ */
 export let insert_rew = function(objs, total_rews = null, hide_button_val = true) {
     document.getElementById("review_content").replaceChildren()
     if(hide_button_val){
@@ -101,9 +119,16 @@ export let insert_rew = function(objs, total_rews = null, hide_button_val = true
 }
 
 
-
-
-
+/**
+ * set beer data
+ * @param beer object with beer data
+ * @param img_id
+ * @param name_id
+ * @param link_id
+ * @param property_id
+ * @param description_id
+ * @returns {Promise<void>}
+ */
 export let set_beer = async function (beer, img_id, name_id, link_id, property_id, description_id) {
     document.getElementById(img_id).src = beer.image_url
     document.getElementById(name_id).textContent = beer.name
@@ -112,14 +137,21 @@ export let set_beer = async function (beer, img_id, name_id, link_id, property_i
     if (description_id) document.getElementById(description_id).textContent = beer.description
 }
 
+/**
+ * get the id of the product in the url
+ * @returns {Promise<string>}
+ */
 export let id_from_url = async function (){
     const searchParams = await new URLSearchParams(window.location.search);
     return searchParams.get("id")
 }
 
-
-// search
-
+/**
+ * replace the recommended in the search bar with the new recommended
+ * @param id callback to calculate the id of each recommended
+ * @param objs new recommended
+ * @returns {Promise<void>}
+ */
 export let replace_search_recommended = async function (id = ()=>{}, objs = []) {
     document.getElementById("recommended").replaceChildren()
     for( let i in objs){
@@ -128,15 +160,27 @@ export let replace_search_recommended = async function (id = ()=>{}, objs = []) 
     }
 }
 
+/**
+ * get the text written in the search bar
+ * @returns {Promise<*>}
+ */
 export let get_search_input = async function(){
     return document.getElementById("search_input").value
 }
 
+/**
+ * set the text written in the search bar
+ * @param text
+ */
 export let set_search_input = function(text){
     document.getElementById("search_input").value = text
 }
 
-
+/**
+ * manage recommended engine (replace with new recommended and add the events)
+ * @param objs new recommended
+ * @returns {Promise<void>}
+ */
 export let recommended_change = async function (objs=[]) {
     await replace_search_recommended((i)=>{return `element${i}search`}, objs)
     for (let i in objs) {
@@ -154,6 +198,11 @@ export let recommended_change = async function (objs=[]) {
     }
 }
 
+/**
+ * go to search page ( with get method to pass the search_key)
+ * @param search_key text in the search bar used to find the results
+ * @returns {Promise<void>}
+ */
 export let search_results = async function (search_key){
     search_key = search_key.replace("#","%23")
     window.location.assign(`../search/search.html?searchkey=${search_key}`)
