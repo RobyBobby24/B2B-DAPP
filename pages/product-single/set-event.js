@@ -1,21 +1,23 @@
-import {query_by_preamble, store_rew, get_by_attribute, update_by_function, count_objs} from "../../services/persitence_manager.js";
+import {query_by_preamble, store_rew, get_by_attribute, update_by_function, count_objs, requestBeersById} from "../../services/persitence_manager.js";
 import {requestBeersByName} from "../../services/persitence_manager.js";
 import {get_review, set_beer, id_from_url, insert_rew, set_input_rew, get_search_input, recommended_change, replace_search_recommended, search_results} from "./utility-function.js"
 
 // see_more_button_text==true if see_more button text is SEE MORE
 let see_more_button_text = true
 // for loading beers by id in index.html
-document.addEventListener("DOMContentLoaded", ()=>{
-    let arrayOfId = [123,192,40,154,206,94]
-    for (let i=1 ; i<=6; i++){
-        set_beer(arrayOfId[i-1], `product-${i}-img`, `product-${i}-name`,
+document.addEventListener("DOMContentLoaded", async () => {
+    let arrayOfId = [123, 192, 40, 154, 206, 94]
+    for (let i = 1; i <= 6; i++) {
+        let beer = await requestBeersById(arrayOfId[i-1])
+        set_beer(beer[0], `product-${i}-img`, `product-${i}-name`,
             `product-${i}-link`, `product-${i}-property`)
     }
 })
 
 document.addEventListener("DOMContentLoaded", async ()=>{
         let id = await id_from_url()
-        set_beer(id, "product-single-img", "product-single-name", null,
+        let beer = await requestBeersById(id)
+        set_beer(beer[0], "product-single-img", "product-single-name", null,
             "product-single-property", "product-single-description")
 })
 

@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     let arrayOfId = [123, 192, 40, 154, 206, 94]
     let beers = []
     for (let id of arrayOfId) {
-         beers.push( await requestBeersById(id))
+        let beer = await requestBeersById(id)
+         beers.push( beer[0])
     }
     set_beers(beers)
 })

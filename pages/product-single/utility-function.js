@@ -1,5 +1,4 @@
-import "../../services/firebase/firestore-database/crud-op.js"
-import {requestBeersById} from "../../services/BeerApi/BeerApiHandler.js";
+
 
 
 
@@ -109,13 +108,12 @@ export let insert_rew = function(objs, total_rews = null, hide_button_val = true
 
 
 
-export let set_beer = async function (id, img_id, name_id, link_id, property_id, description_id) {
-    let beer = await requestBeersById(id)
-    document.getElementById(img_id).src = beer[0].image_url
-    document.getElementById(name_id).textContent = beer[0].name
-    if (link_id) document.getElementById(link_id).href = document.getElementById(link_id).href + "?id=" + id
-    document.getElementById(property_id).textContent = beer[0].abv + "%"
-    if (description_id) document.getElementById(description_id).textContent = beer[0].description
+export let set_beer = async function (beer, img_id, name_id, link_id, property_id, description_id) {
+    document.getElementById(img_id).src = beer.image_url
+    document.getElementById(name_id).textContent = beer.name
+    if (link_id) document.getElementById(link_id).href = document.getElementById(link_id).href + "?id=" + beer.id
+    document.getElementById(property_id).textContent = beer.abv + "%"
+    if (description_id) document.getElementById(description_id).textContent = beer.description
 }
 
 export let id_from_url = async function (){
