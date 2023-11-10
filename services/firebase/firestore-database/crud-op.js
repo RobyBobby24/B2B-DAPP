@@ -1,4 +1,4 @@
-import {getFirestore, collection, getDocs, addDoc, setDoc, deleteDoc, updateDoc, doc, getDoc, orderBy, limit, query, where, startAt, endAt} from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
+import {getFirestore, collection, getDocs, addDoc, setDoc, deleteDoc, updateDoc, doc, getDoc, orderBy, limit, query, where, startAt, endAt, getCountFromServer} from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
 import "../conf-firebase.js"
 const db = getFirestore()
 export const store_rew =  async function (obj, collection_name, error= ()=>{}, postprocessing = ()=>{}) {
@@ -145,6 +145,22 @@ export const delete_rew = async function(collection_name, id, error = ()=>{}, po
     catch (e) {
         console.log(e)
         error()
+    }
+}
+
+
+export const count_objs = async function(attribute, collection_name, attribute_name){
+    try{
+        if (typeof (attribute) == "function") {
+            attribute = attribute()
+        }
+        let q = query(collection(db, collection_name), where(attribute_name, "==", attribute));
+
+        let snapshot = await getCountFromServer(coll);
+        return snapshot.count()
+    }
+    catch{
+
     }
 }
 
