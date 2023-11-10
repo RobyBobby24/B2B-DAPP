@@ -16,8 +16,8 @@ export let insert_beer = async function (objs ) {
                                     <img class="img-responsive" src=${objs[i].image_url} alt="product-img"  style="padding: 5px; position: relative; margin: auto; width: auto; height: 150px" /> 
                                 </div> 
                                 <div class="col-md-10"> 
-                                    <h3 class="mb-1"><b>${objs[i].name}</b></h3> 
-                                    <h6 style="text-align: justify; font-size: 15px" class="mb-1"> ${objs[i].description}</h6> 
+                                    <h3 class="mb-1"><b>${objs[i].name}</b></h3>
+                                    <h6 style="text-align: justify; font-size: 16px; color: #7e7e7e" class="mb-1"> ${objs[i].description}</h6>
                                 </div> 
                             </div>
                         </div>
