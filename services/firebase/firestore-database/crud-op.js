@@ -108,6 +108,26 @@ export const update_rew = async function (obj, collection_name, id, error = ()=>
     }
 }
 
+export const update_by_function =  async function (collection_name,attribute_name, attribute, update_function ){
+    try{
+        if (typeof (attribute) == "function") {
+            attribute = attribute()
+        }
+        let q = query(collection(db, collection_name), where(attribute_name, "==", attribute));
+
+        let snapshot = await getDocs(q)
+
+        snapshot.forEach((snap_item) => {
+            update_rew( update_function(snap_item.data()), collection_name, snap_item.id)
+        })
+        console.log("ok")
+    }
+    catch(e){
+        console.log(e)
+    }
+
+}
+
 export const delete_rew = async function(collection_name, id, error = ()=>{}, postprocessing = ()=>{}){
     try{
         // preprocessing
