@@ -1,4 +1,12 @@
-import {delete_rew, load_rew, query_by_preamble, store_rew, update_rew, get_by_attribute} from "../../services/firebase/firestore-database/crud-op.js";
+import {
+    delete_rew,
+    load_rew,
+    query_by_preamble,
+    store_rew,
+    update_rew,
+    get_by_attribute,
+    update_by_function, count_objs
+} from "../../services/firebase/firestore-database/crud-op.js";
 import {get_review, set_review, set_beer, id_from_url, insert_rew, set_input_rew} from "./utility-function.js"
 import {get_search_input, recommended_change, replace_search_recommended, search_results} from "../index/utility-function.js";
 import {requestBeersByName} from "../../services/BeerApi/BeerApiHandler.js";
@@ -17,24 +25,29 @@ document.addEventListener("DOMContentLoaded", async ()=>{
         let id = await id_from_url()
         set_beer(id, "product-single-img", "product-single-name", null,
             "product-single-property", "product-single-description")
-    })
-
-
-document.getElementById( "submit_rew").addEventListener("click",async () => {
-    store_rew(await get_review(), "Review")
-    set_input_rew()
 })
 
-document.getElementById( "submit_rew").addEventListener("click",async () => {
+document.addEventListener("DOMContentLoaded", async ()=>{
     let id = await id_from_url()
-    let reviews = await get_by_attribute( id, "Review","beer_id",3, "date", "desc")
-    insert_rew(reviews)
+    update_by_function("Beer_Id","id",id, (obj)=>{
+        obj.number_calls += 1
+    })
 })
 
 document.addEventListener("DOMContentLoaded", async ()=>{
     let id = await id_from_url()
     let reviews = await get_by_attribute( id, "Review","beer_id",3, "date", "desc")
-    insert_rew(reviews)
+    let number_rews = await count_objs(id,"Review","beer_id")
+    insert_rew(reviews, number_rews)
+})
+
+document.getElementById( "submit_rew").addEventListener("click",async () => {
+    await store_rew(await get_review(), "Review")
+    set_input_rew()
+    let id = await id_from_url()
+    let reviews = await get_by_attribute( id, "Review","beer_id",3, "date", "desc")
+    let number_rews = await count_objs(id,"Review","beer_id")
+    insert_rew(reviews, number_rews)
 })
 
 
@@ -42,14 +55,16 @@ document.getElementById("see-more").addEventListener("click", async () => {
     if (see_more_button_text) {
         let id = await id_from_url()
         let reviews = await get_by_attribute(id, "Review", "beer_id", null, "date", "desc")
-        insert_rew(reviews)
+        let number_rews = await count_objs(id,"Review","beer_id")
+        insert_rew(reviews, number_rews)
         document.getElementById("see-more").innerText = "SEE LESS"
         see_more_button_text = false
     }
     else {
         let id = await id_from_url()
         let reviews = await get_by_attribute(id, "Review", "beer_id", 3, "date", "desc")
-        insert_rew(reviews)
+        let number_rews = await count_objs(id,"Review","beer_id")
+        insert_rew(reviews, number_rews)
         document.getElementById("see-more").innerText = "SEE MORE"
         see_more_button_text = true
     }

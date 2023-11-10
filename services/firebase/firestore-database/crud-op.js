@@ -149,18 +149,18 @@ export const delete_rew = async function(collection_name, id, error = ()=>{}, po
 }
 
 
-export const count_objs = async function(attribute, collection_name, attribute_name){
+export const count_objs = async function(attribute_val, collection_name, attribute_name){
     try{
-        if (typeof (attribute) == "function") {
-            attribute = attribute()
+        if (typeof (attribute_val) == "function") {
+            attribute_val = attribute_val()
         }
-        let q = query(collection(db, collection_name), where(attribute_name, "==", attribute));
+        let q = query(collection(db, collection_name), where(attribute_name, "==", attribute_val));
 
-        let snapshot = await getCountFromServer(coll);
-        return snapshot.count()
+        let snapshot = await getCountFromServer(q);
+        return snapshot.data().count
     }
-    catch{
-
+    catch(e){
+        console.log(e)
     }
 }
 

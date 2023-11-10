@@ -33,13 +33,40 @@ export let set_review = function (objs, user_id, rew_id, date_id){
     document.getElementById(date_id).value = new Date(obj.date).toISOString()
 }
 
+/**
+ * set the values of the form review
+ * @param username new username value
+ * @param review new review value
+ */
 export let set_input_rew = function ( username="", review=""){
     document.getElementById("username").value = username
     document.getElementById("review").value = review
 }
 
-export let insert_rew = function(objs) {
-    document.getElementById("review_content").replaceChildren()
+/**
+ * this function check and eventualy hide the button
+ * @param min_rews_number minimum number of reviews that hide the SEE MORE button
+ * @param rews_number number of review
+ */
+let hide_button = function (min_rews_number, rews_number){
+    if(rews_number <= min_rews_number){
+        document.getElementById("see-more").style.display = "none"
+    }
+    else {
+        document.getElementById("see-more").style.display = ""
+    }
+}
+
+let set_number_rews_label = function (number_rews){
+    if( number_rews == 1){
+        document.getElementById("number-rews").innerText = `${number_rews} Review`
+    }
+    else{
+        document.getElementById("number-rews").innerText = `${number_rews} Reviews`
+    }
+}
+
+let insert_rews_HTML = function (objs){
     for(let obj of objs ){
         let html = `<li class="media">
                                 <a class="pull-left">
@@ -60,6 +87,22 @@ export let insert_rew = function(objs) {
                             </li>`
         document.getElementById("review_content").insertAdjacentHTML("beforeend", html)
     }
+}
+
+
+
+export let insert_rew = function(objs, total_rews = null, hide_button_val = true) {
+    document.getElementById("review_content").replaceChildren()
+    if(hide_button_val){
+        if(total_rews == null){
+            hide_button(3, objs.length)
+        }
+        else {
+            hide_button(3, total_rews)
+        }
+    }
+    set_number_rews_label(total_rews)
+    insert_rews_HTML(objs)
 }
 
 
