@@ -41,17 +41,17 @@ export let set_input_rew = function ( username="", review=""){
 export let insert_rew = function(objs) {
     document.getElementById("review_content").replaceChildren()
     for(let obj of objs ){
-        let html = `<li className="media">
-                                <a className="pull-left">
-                                    <img className="media-object comment-avatar" src="https://thumbs.dreamstime.com/z/birra-bevente-dell-uomo-avido-25256367.jpg?w=576" alt="" width="50" height="50">
+        let html = `<li class="media">
+                                <a class="pull-left">
+                                    <img class="media-object comment-avatar" src="https://thumbs.dreamstime.com/z/birra-bevente-dell-uomo-avido-25256367.jpg?w=576" alt="" width="50" height="50">
                                 </a>
-                                <div className="media-body">
-                                    <div className="comment-info">
-                                        <div className="comment-author">
+                                <div class="media-body">
+                                    <div class="comment-info">
+                                        <div class="comment-author">
                                             <a> ${obj.username}</a>
                                         </div>
                                         <time>${new Date(obj.date).toGMTString()}</time>
-                                        <!-- <a className="comment-button" href="#!"><i className="tf-ion-chatbubbles"></i>Reply</a> -->
+                                        <!-- <a class="comment-button" href="#!"><i class="tf-ion-chatbubbles"></i>Reply</a> -->
                                     </div>
                                     <p>
                                         ${obj.review}
