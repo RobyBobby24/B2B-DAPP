@@ -1,15 +1,7 @@
-import {
-    delete_rew,
-    load_rew,
-    query_by_preamble,
-    store_rew,
-    update_rew,
-    get_by_attribute,
-    update_by_function, count_objs
-} from "../../services/firebase/firestore-database/crud-op.js";
-import {get_review, set_review, set_beer, id_from_url, insert_rew, set_input_rew} from "./utility-function.js"
-import {get_search_input, recommended_change, replace_search_recommended, search_results} from "../index/utility-function.js";
-import {requestBeersByName} from "../../services/BeerApi/BeerApiHandler.js";
+import {query_by_preamble, store_rew, get_by_attribute, update_by_function, count_objs} from "../../services/persitence_menager.js";
+import {requestBeersByName} from "../../services/persitence_menager.js";
+import {get_review, set_beer, id_from_url, insert_rew, set_input_rew, get_search_input, recommended_change, replace_search_recommended, search_results} from "./utility-function.js"
+
 // see_more_button_text==true if see_more button text is SEE MORE
 let see_more_button_text = true
 // for loading beers by id in index.html
