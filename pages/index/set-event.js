@@ -1,20 +1,25 @@
-import {search_results, set_background_img, set_beer, get_search_input, recommended_change, replace_search_recommended} from "./utility-function.js";
+import {search_results, set_background_img, set_beers, get_search_input, recommended_change, replace_search_recommended} from "./utility-function.js";
 import {query_by_preamble} from "../../services/persitence_manager.js";
-import {requestBeersByName} from "../../services/persitence_manager.js";
+import {requestBeersByName, requestBeersById} from "../../services/persitence_manager.js";
 
+/*
 document.addEventListener("DOMContentLoaded", ()=>{
     for (let i=1 ; i<=3; i++){
         set_background_img(`slider-${i}.jpeg`, `slide${i}`)
     }
 })
+ */
+
+
 
 // for loading beers by id in index.html
-document.addEventListener("DOMContentLoaded", ()=>{
-    let arrayOfId = [123,192,40,154,206,94]
-    for (let i=1 ; i<=6; i++){
-        set_beer(arrayOfId[i-1], `product-${i}-img`, `product-${i}-name`,
-            `product-${i}-link`, `product-${i}-property`, null)
+document.addEventListener("DOMContentLoaded", async () => {
+    let arrayOfId = [123, 192, 40, 154, 206, 94]
+    let beers = []
+    for (let id of arrayOfId) {
+         beers.push( await requestBeersById(id))
     }
+    set_beers(beers)
 })
 
 

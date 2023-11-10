@@ -10,6 +10,7 @@ export let set_background_img= function (img_name, img_id){
     } )
 }
 
+/*
 export let set_beer = async function (id, img_id, name_id, link_id, property_id, description_id) {
     let beer = await requestBeersById(id)
     document.getElementById(img_id).src = beer[0].image_url
@@ -17,6 +18,19 @@ export let set_beer = async function (id, img_id, name_id, link_id, property_id,
     document.getElementById(link_id).href = document.getElementById(link_id).href + "?id=" + id
     document.getElementById(property_id).textContent = beer[0].abv + "%"
     if (description_id) document.getElementById(description_id).textContent = beer[0].description
+}
+ */
+
+export let set_beers = async function (beers) {
+    let pos = 1
+    for(let beer of beers){
+        document.getElementById(`product-${pos}-img`).src = beer[0].image_url
+        document.getElementById(`product-${pos}-name`).textContent = beer[0].name
+        document.getElementById(`product-${pos}-link`).href = document.getElementById(`product-${pos}-link`).href + "?id=" + beer.id
+        document.getElementById(`product-${pos}-property`).textContent = beer[0].abv + "%"
+        pos +=1
+    }
+
 }
 
 export let replace_search_recommended = async function (id = ()=>{}, objs = []) {
