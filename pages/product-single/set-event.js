@@ -2,7 +2,8 @@ import {delete_rew, load_rew, query_by_preamble, store_rew, update_rew, get_by_a
 import {get_review, set_review, set_beer, id_from_url, insert_rew, set_input_rew} from "./utility-function.js"
 import {get_search_input, recommended_change, replace_search_recommended, search_results} from "../index/utility-function.js";
 import {requestBeersByName} from "../../services/BeerApi/BeerApiHandler.js";
-
+// see_more_button_text==true if see_more button text is SEE MORE
+let see_more_button_text = true
 // for loading beers by id in index.html
 document.addEventListener("DOMContentLoaded", ()=>{
     let arrayOfId = [123,192,40,154,206,94]
@@ -34,6 +35,24 @@ document.addEventListener("DOMContentLoaded", async ()=>{
     let id = await id_from_url()
     let reviews = await get_by_attribute( id, "Review","beer_id",3, "date", "desc")
     insert_rew(reviews)
+})
+
+
+document.getElementById("see-more").addEventListener("click", async () => {
+    if (see_more_button_text) {
+        let id = await id_from_url()
+        let reviews = await get_by_attribute(id, "Review", "beer_id", null, "date", "desc")
+        insert_rew(reviews)
+        document.getElementById("see-more").innerText = "SEE LESS"
+        see_more_button_text = false
+    }
+    else {
+        let id = await id_from_url()
+        let reviews = await get_by_attribute(id, "Review", "beer_id", 3, "date", "desc")
+        insert_rew(reviews)
+        document.getElementById("see-more").innerText = "SEE MORE"
+        see_more_button_text = true
+    }
 })
 /*
 document.getElementById( "load").addEventListener("click", ()=>{
@@ -90,3 +109,4 @@ document.getElementById("search_input").addEventListener("submit",async () => {
     let objs = await requestBeersByName(input)
     insert_beer(objs)
 })
+
