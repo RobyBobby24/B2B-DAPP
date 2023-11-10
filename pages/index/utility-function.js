@@ -26,7 +26,7 @@ export let set_beers = async function (beers) {
     for(let beer of beers){
         document.getElementById(`product-${pos}-img`).src = beer[0].image_url
         document.getElementById(`product-${pos}-name`).textContent = beer[0].name
-        document.getElementById(`product-${pos}-link`).href = document.getElementById(`product-${pos}-link`).href + "?id=" + beer.id
+        document.getElementById(`product-${pos}-link`).href = document.getElementById(`product-${pos}-link`).href + "?id=" + beer[0].id
         document.getElementById(`product-${pos}-property`).textContent = beer[0].abv + "%"
         pos +=1
     }
