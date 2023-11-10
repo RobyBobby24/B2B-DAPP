@@ -1,8 +1,4 @@
 
-
-
-
-
 export let get_username = function(){
     return document.getElementById("username").value
 }
