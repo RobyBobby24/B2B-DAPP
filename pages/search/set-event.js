@@ -11,7 +11,9 @@ for(let i=1 ; i<=5; i++){
 }
  */
 
-
+/**
+ * show the recommended by keyboard
+ */
 document.getElementById("search_input").addEventListener("keyup", async () => {
     let input = await get_search_input()
 
@@ -25,7 +27,9 @@ document.getElementById("search_input").addEventListener("keyup", async () => {
     recommended_change(objs)
 })
 
-
+/**
+ * show the recommended when search bar be clicked
+ */
 document.getElementById("search_input").addEventListener("click", async () => {
     let input = await get_search_input()
     let objs = await query_by_preamble(
@@ -38,9 +42,15 @@ document.getElementById("search_input").addEventListener("click", async () => {
     recommended_change(objs)
 })
 
+/**
+ * unshow the recommended when search bar be unfocus
+ */
 document.getElementById("recommended_div").addEventListener("focusout", ()=>{
     setTimeout(replace_search_recommended,"125")})
 
+/**
+ * start the research
+ */
 document.getElementById("discover_button").addEventListener("click",async () => {
     let input = await get_search_input()
     let objs = await requestBeersByName(input)
@@ -48,6 +58,9 @@ document.getElementById("discover_button").addEventListener("click",async () => 
     rename_url(input)
 })
 
+/**
+ * show results
+ */
 document.addEventListener("DOMContentLoaded", async () => {
     let search_key = await get_searchkey_from_url()
     let objs = await requestBeersByName(search_key)

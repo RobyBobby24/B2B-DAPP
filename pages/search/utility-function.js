@@ -1,5 +1,8 @@
-import {requestBeersByName} from "../../services/BeerApi/BeerApiHandler.js";
-
+/**
+ * insert result HTML
+ * @param objs beers
+ * @returns {Promise<void>}
+ */
 export let insert_beer = async function (objs ) {
     document.getElementById("beer_results").replaceChildren()
     for(let i in objs ){
@@ -25,6 +28,12 @@ export let insert_beer = async function (objs ) {
     }
 }
 
+/**
+ * replace the recommended in the search bar with the new recommended
+ * @param id callback to calculate the id of each recommended
+ * @param objs new recommended
+ * @returns {Promise<void>}
+ */
 export let replace_search_recommended = async function (id = ()=>{}, objs = []) {
     document.getElementById("recommended").replaceChildren()
     for( let i in objs){
@@ -33,16 +42,28 @@ export let replace_search_recommended = async function (id = ()=>{}, objs = []) 
     }
 }
 
+/**
+ * get the text written in the search bar
+ * @returns {Promise<*>}
+ */
 export let get_search_input = async function(){
     let input = document.getElementById("search_input").value
     return input.replace("#","%23")
 }
 
+/**
+ * set the text written in the search bar
+ * @param text
+ */
 export let set_search_input = function(text){
    document.getElementById("search_input").value = text
 }
 
-
+/**
+ * manage recommended engine (replace with new recommended and add the events)
+ * @param objs new recommended
+ * @returns {Promise<void>}
+ */
 export let recommended_change = async function (objs=[]) {
     await replace_search_recommended((i)=>{return `element${i}search`}, objs)
     for (let i in objs) {
@@ -61,11 +82,19 @@ export let recommended_change = async function (objs=[]) {
     }
 }
 
+/**
+ * @returns {Promise<string>} the searchkey passed into url by get method
+ */
 export let get_searchkey_from_url = async function (){
     let searchParams = await new URLSearchParams(window.location.search);
     return searchParams.get("searchkey").replace("#","%23")
 }
 
+/**
+ * show the correct url without do the request when is done a research
+ * @param input search key to add in the url
+ * @returns {Promise<void>}
+ */
 export let rename_url = async function (input){
     input = input.replace("#","%23")
     history.replaceState(null, '', `search.html?searchkey=${input}`);
