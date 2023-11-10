@@ -14,7 +14,7 @@ export let insert_beer = async function (objs ) {
                                 </div> 
                                 <div class="col-md-10"> 
                                     <h3 class="mb-1"><b>${objs[i].name}</b></h3> 
-                                    <h7 class="mb-1"> ${objs[i].description}</h7> 
+                                    <h6 style="text-align: justify; font-size: 15px" class="mb-1"> ${objs[i].description}</h6> 
                                 </div> 
                             </div>
                         </div>
