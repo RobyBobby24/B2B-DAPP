@@ -1,7 +1,6 @@
 # B2B-DAPP
 front-end engineering project small web app on a beer blog 
 
-Logical organization, layering and directory structure: 
 
 In the project there are the follow directory:
 
