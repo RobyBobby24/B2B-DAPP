@@ -32,4 +32,4 @@ The Service directory contain the follow files:
    
  *	**BeerApi/BeerApiHeandler.js**: responsible to interact with Punk API
    
- *	**Persistence_menager.js**: an interface between persistence layer and other 
+ *	**Persistence_menager.js**: an interface between persistence layer and others 
