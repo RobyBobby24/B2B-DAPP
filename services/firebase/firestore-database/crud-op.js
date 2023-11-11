@@ -175,19 +175,15 @@ export const get_by_attribute = async function(attribute, collection_name, attri
         // execute operation
         let q
         if( limit_number == null && order_by == null){
-            console.log(1)
             q = query(collection(db, collection_name), where(attribute_name, "==", attribute));
         }
         else if (limit_number == null){
-            console.log(2)
             q = query(collection(db, collection_name), where(attribute_name, "==", attribute), orderBy(order_by, order_direction));
         }
         else if(order_by == null) {
-            console.log(3)
             q = query(collection(db, collection_name), where(attribute_name, "==", attribute), limit(limit_number));
         }
         else{
-            console.log(4)
             q = query(collection(db, collection_name), where(attribute_name, "==", attribute), orderBy(order_by, order_direction), limit(limit_number));
         }
         let snapshot = await getDocs(q)
