@@ -3,6 +3,7 @@ import {load_ordered, query_by_preamble} from "../../services/persitence_manager
 import {requestBeersById} from "../../services/persitence_manager.js";
 
 
+
 /**
  * loading beers by id in index.html
  */
@@ -17,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 })
 
 /**
- * show the recommended
+ * show the recommended beers
  */
 document.getElementById("search_input").addEventListener("keyup", async (event) => {
     if(event.key == "Enter"){
@@ -39,7 +40,7 @@ document.getElementById("search_input").addEventListener("keyup", async (event) 
 })
 
 /**
- * start the research
+ * start the research of the beers
  */
 document.getElementById("search_input").addEventListener("click", async () => {
     let input = await get_search_input()
@@ -54,7 +55,7 @@ document.getElementById("search_input").addEventListener("click", async () => {
 })
 
 /**
- * reset the recommended
+ * reset the recommended element
  */
 document.getElementById("recommended_div").addEventListener("focusout", ()=>{
     setTimeout(replace_search_recommended,"125")})

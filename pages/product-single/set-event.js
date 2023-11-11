@@ -4,7 +4,7 @@ import {get_review, set_beer, id_from_url, insert_rew, set_input_rew, get_search
 // see_more_button_text==true if see_more button text is SEE MORE
 let see_more_button_text = true
 /**
- * for loading beers by id in index.html
+ * loads beers by id in index.html
  */
 document.addEventListener("DOMContentLoaded", async () => {
     let arrayOfId = [123, 192, 40, 154, 206, 94]
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 })
 
 /**
- * set data of the product
+ * sets data of the product
  */
 document.addEventListener("DOMContentLoaded", async ()=>{
         let id = await id_from_url()
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async ()=>{
 })
 
 /**
- * increase the number of visit of the product
+ * increases the number of views of the product
  */
 document.addEventListener("DOMContentLoaded", async ()=>{
     let id = await id_from_url()
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async ()=>{
 })
 
 /**
- * insert review of the product
+ * inserts review of the product
  */
 document.addEventListener("DOMContentLoaded", async ()=>{
     let id = await id_from_url()
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", async ()=>{
 })
 
 /**
- * add new review
+ * adds new review
  */
 document.getElementById( "submit_rew").addEventListener("click",async () => {
     await store_rew(await get_review(), "Review")
@@ -59,7 +59,7 @@ document.getElementById( "submit_rew").addEventListener("click",async () => {
 })
 
 /**
- * show more or less review
+ * manages the button that allows to see all the reviews of that beer or to see a fixed number of reviews
  */
 document.getElementById("see-more").addEventListener("click", async () => {
     if (see_more_button_text) {
@@ -81,7 +81,7 @@ document.getElementById("see-more").addEventListener("click", async () => {
 })
 
 /**
- * show the recommended
+ * shows the recommended beers
  */
 document.getElementById("search_input").addEventListener("keyup", async (event) => {
     if(event.key == "Enter"){
@@ -103,7 +103,7 @@ document.getElementById("search_input").addEventListener("keyup", async (event) 
 })
 
 /**
- * start the research
+ * starts the research of the beer
  */
 document.getElementById("search_input").addEventListener("click", async () => {
     let input = await get_search_input()
@@ -118,7 +118,7 @@ document.getElementById("search_input").addEventListener("click", async () => {
 })
 
 /**
- * reset the recommended
+ * resets the recommended
  */
 document.getElementById("recommended_div").addEventListener("focusout", ()=>{
     setTimeout(replace_search_recommended,"125")})

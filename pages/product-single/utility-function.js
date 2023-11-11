@@ -20,7 +20,7 @@ let get_actual_date = function(){
 }
 
 /**
- * return the data of new review
+ * returns the data of new review
  * @returns {Promise<{date: number, review: *, beer_id: string, username: *}>}
  */
 export let get_review = async function () {
@@ -34,7 +34,7 @@ export let get_review = async function () {
 }
 
 /**
- * set the values of the form review
+ * sets the values of the form review
  * @param username new username value
  * @param review new review value
  */
@@ -44,7 +44,7 @@ export let set_input_rew = function ( username="", review=""){
 }
 
 /**
- * this function check and eventualy hide the button
+ * this function check and, eventually, hides the button
  * @param min_rews_number minimum number of reviews that hide the SEE MORE button
  * @param rews_number number of review
  */
@@ -58,7 +58,7 @@ let hide_button = function (min_rews_number, rews_number){
 }
 
 /**
- * set the label of the number of review
+ * sets the label of the number of reviews
  * @param number_rews total number of review
  */
 let set_number_rews_label = function (number_rews){
@@ -71,7 +71,7 @@ let set_number_rews_label = function (number_rews){
 }
 
 /**
- * insert HTML relative to a review
+ * inserts HTML of the review
  * @param objs list of object each one represent a review
  */
 let insert_rews_HTML = function (objs){
@@ -99,7 +99,7 @@ let insert_rews_HTML = function (objs){
 
 
 /**
- * manage all the process of insert html reviews, do all the necessary check
+ * manages the html reviews, and does all the necessary check
  * @param objs reviews
  * @param total_rews total number of reviews (not only the passed with objs)
  * @param hide_button_val if do or not the check on the button SEE MORE
@@ -120,7 +120,7 @@ export let insert_rew = function(objs, total_rews = null, hide_button_val = true
 
 
 /**
- * set beer data
+ * sets beer data
  * @param beer object with beer data
  * @param img_id
  * @param name_id
@@ -138,7 +138,7 @@ export let set_beer = async function (beer, img_id, name_id, link_id, property_i
 }
 
 /**
- * get the id of the product in the url
+ * gets the id of the product in the url
  * @returns {Promise<string>}
  */
 export let id_from_url = async function (){
@@ -147,7 +147,7 @@ export let id_from_url = async function (){
 }
 
 /**
- * replace the recommended in the search bar with the new recommended
+ * replaces the recommended beer in the search bar with the new recommended
  * @param id callback to calculate the id of each recommended
  * @param objs new recommended
  * @returns {Promise<void>}
@@ -161,7 +161,7 @@ export let replace_search_recommended = async function (id = ()=>{}, objs = []) 
 }
 
 /**
- * get the text written in the search bar
+ * gets the text written in the search bar
  * @returns {Promise<*>}
  */
 export let get_search_input = async function(){
@@ -169,7 +169,7 @@ export let get_search_input = async function(){
 }
 
 /**
- * set the text written in the search bar
+ * sets the text written in the search bar
  * @param text
  */
 export let set_search_input = function(text){
@@ -177,7 +177,7 @@ export let set_search_input = function(text){
 }
 
 /**
- * manage recommended engine (replace with new recommended and add the events)
+ * manages recommender engine (replacing with new recommended and adding events)
  * @param objs new recommended
  * @returns {Promise<void>}
  */
@@ -199,7 +199,7 @@ export let recommended_change = async function (objs=[]) {
 }
 
 /**
- * go to search page ( with get method to pass the search_key)
+ * changing url in order to switch to the search page (passing the search_key in the query string)
  * @param search_key text in the search bar used to find the results
  * @returns {Promise<void>}
  */

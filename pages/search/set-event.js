@@ -12,7 +12,7 @@ for(let i=1 ; i<=5; i++){
  */
 
 /**
- * show the recommended by keyboard
+ * shows the recommended by keyboard
  */
 document.getElementById("search_input").addEventListener("keyup", async () => {
     let input = await get_search_input()
@@ -28,7 +28,7 @@ document.getElementById("search_input").addEventListener("keyup", async () => {
 })
 
 /**
- * show the recommended when search bar be clicked
+ * shows the recommended beer when search bar is clicked
  */
 document.getElementById("search_input").addEventListener("click", async () => {
     let input = await get_search_input()
@@ -43,13 +43,13 @@ document.getElementById("search_input").addEventListener("click", async () => {
 })
 
 /**
- * unshow the recommended when search bar be unfocus
+ * shows off the recommended when search bar is unfocused
  */
 document.getElementById("recommended_div").addEventListener("focusout", ()=>{
     setTimeout(replace_search_recommended,"125")})
 
 /**
- * start the research
+ * starts the research
  */
 document.getElementById("discover_button").addEventListener("click",async () => {
     let input = await get_search_input()

@@ -1,5 +1,5 @@
 /**
- * insert on html a list of beers
+ * inserts a list of beers in html
  * @param beers list to insert
  * @returns {Promise<void>}
  */
@@ -16,7 +16,7 @@ export let set_beers = async function (beers) {
 }
 
 /**
- * replace the recommended in the search bar with the new recommended
+ * replaces the recommended beer in the search bar with the new recommended
  * @param id callback to calculate the id of each recommended
  * @param objs new recommended
  * @returns {Promise<void>}
@@ -30,7 +30,7 @@ export let replace_search_recommended = async function (id = ()=>{}, objs = []) 
 }
 
 /**
- * get the text written in the search bar
+ * gets the written text in the search bar
  * @returns {Promise<*>}
  */
 export let get_search_input = async function(){
@@ -38,7 +38,7 @@ export let get_search_input = async function(){
 }
 
 /**
- * set the text written in the search bar
+ * sets the written text in the search bar
  * @param text
  */
 export let set_search_input = function(text){
@@ -46,7 +46,7 @@ export let set_search_input = function(text){
 }
 
 /**
- * manage recommended engine (replace with new recommended and add the events)
+ * manages recommender engine (replacing with new recommended and adding events)
  * @param objs new recommended
  * @returns {Promise<void>}
  */
@@ -68,7 +68,7 @@ export let recommended_change = async function (objs=[]) {
 }
 
 /**
- * go to search page ( with get method to pass the search_key)
+ * changing url in order to switch to the search page (passing the search_key in the query string)
  * @param search_key text in the search bar used to find the results
  * @returns {Promise<void>}
  */
